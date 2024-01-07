@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from forex_python.converter import CurrencyRates
+import os
 
 c = CurrencyRates(force_decimal=True)
 
