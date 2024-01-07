@@ -1,26 +1,24 @@
 import tkinter as tk
 from tkinter import ttk
 from forex_python.converter import CurrencyRates
-import os
 
 c = CurrencyRates(force_decimal=True)
 
 cList = ["EUR", "USD", "HUF", "GBP", "CAD", "JPY", "AUD", "CHF", "CZK"]
-
 cRates = {}
 
 print("Importing exchange rates...")
 
 for curr in cList:
-    currList = []
-    for curr2 in cList:
-        currList.append(c.get_rate(curr, curr2))
-    cRates[curr] = currList
+    cRates[curr] = c.get_rates(curr)
 
 print("Done!")
 
 def convCurr(curr1, curr2, num):
-    return round(num * cRates[curr1][cList.index(curr2)], 2)
+    if curr1 == curr2:
+        return num
+    else:
+        return round(num * cRates[curr1][curr2], 2)
 
 win = tk.Tk()
 win.title("Currency Converter")
@@ -59,7 +57,7 @@ combo2.set("USD")
 
 lbAuthor = tk.Label(win, text="Oliver Giczi")
 
-def cback(x=1, y=1, z=1):
+def cback(*args):
     try:
         num = int(inputEntry.get())
     except ValueError:
@@ -85,7 +83,3 @@ lbAuthor.place(relx=0.5, rely=0.94, anchor="center")
 cback()
 
 win.mainloop()
-
-
-
-
