@@ -1,4 +1,4 @@
-# Currency Converter
+# Währungsrechner
 ## Beschreibung:
 Simples Programm, mit welchem man zwischen Währungen wechseln kann. Die Wechselrate wird mit der "forex" Bibliothek importiert.
 
